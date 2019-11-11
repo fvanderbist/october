@@ -1,3 +1,5 @@
+package com.october.web;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -17,10 +19,7 @@ public class RandomIntegerController {
         Random r = new Random();
         int high = 50;
         return Flux.fromStream(Stream.generate(() -> r.nextInt(high))
-                .map(s -> String.valueOf(s))
-                .peek((msg) -> {
-                    logger.info(msg);
-                }))
+                .map(s -> String.valueOf(s)))
                 .map(s -> Integer.valueOf(s))
                 .delayElements(Duration.ofSeconds(1));
     }
